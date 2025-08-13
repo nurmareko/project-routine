@@ -25,3 +25,7 @@ def edit():
 @app.route("/study", methods=["POST"])
 def study():
     return render_template("study.html")
+
+@app.route("/statistics")
+def statistics():
+    return render_template("statistics.html")

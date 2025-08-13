@@ -9,13 +9,14 @@ Routine
 <div class="top">
     <a href="/edit">Edit</a>
     <a href="">Project: Routine</a>
-    <a href="">Statistics</a>
+    <a href="/statistics">Statistics</a>
 </div>
 <div class="middle">
-    <h2>12:34</h2>
-    <h3>Thu, Aug 7</h3>
-    <p>Hours workded today: </p>
-    
+
+    <div id="clock">
+        <h2 id="clock-top"></h2>
+        <h3 id="clock-bottom"></h3>
+    </div>
     <form action="/study" method="post">
         <select>
             <option disabled selected>Task</option>
@@ -30,5 +31,36 @@ Routine
         <button>Start</button>
     </form>
 </div>
+<script>
+    const updateDateTime = () => {
+        const clockTopElement = document.getElementById('clock-top');
+        const clockBottomElement = document.getElementById('clock-bottom');
+        const currentTime = new Date();
+
+        const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const dayOfWeek = daysOfWeek[currentTime.getDay()];
+
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const month = months[currentTime.getMonth()];
+
+        const day = currentTime.getDate();
+
+        let hours = currentTime.getHours();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12 || 12;
+
+        const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+        const seconds = currentTime.getSeconds().toString().padStart(2, '0');
+
+        const topString = `${hours}:${minutes}:${seconds} ${ampm}`;
+        const bottomString = `${dayOfWeek}, ${month} ${day}`;
+        clockTopElement.textContent = topString;
+        clockBottomElement.textContent = bottomString;
+    }
+
+    setInterval(updateDateTime, 1000);
+
+    updateDateTime();
+</script>
 
 {% endblock %}
