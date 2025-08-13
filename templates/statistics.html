@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Statistic
+{% endblock %}
+
+{% block body %}
+<div class="top">
+    <a href="/">Back</a>
+</div>
+<div class="middle">
+    <table>
+        <thead>
+            <tr>Task</tr>
+            <tr>Work</tr>
+            <tr>Date</tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>CS50</td>
+                <td>50</td>
+                <td>2025-08-13 07:00:58</td>
+            </tr>
+            <tr>
+                <td>CS50</td>
+                <td>50</td>
+                <td>2025-08-13 07:50:58</td>
+            </tr>
+            <tr>
+                <td>CS:APP</td>
+                <td>30</td>
+                <td>2025-08-13 09:00:58</td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</div>
+
+{% endblock %}
