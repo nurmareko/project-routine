@@ -18,15 +18,27 @@ Routine
         <h3 id="clock-bottom"></h3>
     </div>
     <form action="/study" method="post">
-        <select>
-            <option disabled selected>Task</option>
-            <option>Fullstackopen</option>
-            <option>CS50</option>
+        <select name="task" id="task-select">
+            <option disabled selected value="">Task</option>
+            {% for task in tasks %}
+              <option
+                data-rest-time="{{ task.rest_time }}"
+                data-repetition="{{ task.repetition }}"
+                data-work-time="{{ task.work_time }}"
+                value="{{ task.name }}"
+              >
+                {{ task.name }}
+              </option>
+            {% endfor %}
         </select>
         <br>
-        <input type="number" name="hour">
-        :
-        <input type="number" name="minute">
+
+        Work Time: <input id="work-time" name="work-time" type="number" min="1" max="60">
+        <br>
+        Repetition: <input id="repetition" name="repetition" type="number" min="1">
+        <br>
+        Rest Time: <input id="rest-time" name="rest-time" type="number" min="1" max="30">
+
         <br>
         <button>Start</button>
     </form>
@@ -58,9 +70,20 @@ Routine
         clockBottomElement.textContent = bottomString;
     }
 
-    setInterval(updateDateTime, 1000);
+    const updateFormInput = () => {
+      document.getElementById('task-select').addEventListener('change', function() {
+        const selected = this.options[this.selectedIndex];
 
+        document.getElementById('work-time').value = selected.dataset.workTime || '';
+        document.getElementById('repetition').value = selected.dataset.repetition || '';
+        document.getElementById('rest-time').value = selected.dataset.restTime || '';
+      });
+    }
+
+    setInterval(updateDateTime, 1000);
     updateDateTime();
+    updateFormInput();
+
 </script>
 
 {% endblock %}
