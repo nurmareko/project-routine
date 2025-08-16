@@ -33,7 +33,7 @@ Tasks
                             <input name="repetition" type="hidden" value="{{ task.repetition }}">
                             <button>Edit</button>
                         </form>
-                        <form action="/delete" method="post">
+                        <form action="/delete" method="get">
                             <input name="name" type="hidden" value="{{ task.name }}">
                             <button>Delete</button>
                         </form>

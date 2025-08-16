@@ -5,13 +5,14 @@ Delete
 {% endblock %}
 
 {% block body %}
+<div class="top">
+    <a href="/tasks">Back</a>
+</div>
 <div class="middle">
-    <p>Are you sure you want to delete {{ name }}?</p>
-    <form>
-        <button>Yes</button>
-    </form>
-    <form>
-        <button>No</button>
+    <p>Are you sure you want to delete <strong>{{ name }}</strong>?</p>
+    <form action="/delete" method="post">
+        <input name="name" type="hidden" value="{{ name }}">
+        <button type="submit">Yes</button>
     </form>
 </div>
 
