@@ -38,4 +38,5 @@ def study():
 
 @app.route("/statistics")
 def statistics():
-    return render_template("statistics.html")
+    studies = db.execute('SELECT * FROM studies')
+    return render_template("statistics.html", studies=studies)

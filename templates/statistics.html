@@ -16,21 +16,13 @@ Statistic
             <tr>Date</tr>
         </thead>
         <tbody>
-            <tr>
-                <td>CS50</td>
-                <td>50</td>
-                <td>2025-08-13 07:00:58</td>
-            </tr>
-            <tr>
-                <td>CS50</td>
-                <td>50</td>
-                <td>2025-08-13 07:50:58</td>
-            </tr>
-            <tr>
-                <td>CS:APP</td>
-                <td>30</td>
-                <td>2025-08-13 09:00:58</td>
-            </tr>
+            {% for study in studies %}
+                <tr>
+                    <td>{{ study.name }}</td>
+                    <td>{{ study.work_time }}</td>
+                    <td>{{ study.date }}</td>
+                </tr>
+            {% endfor %}
         </tbody>
         <tfoot></tfoot>
     </table>
