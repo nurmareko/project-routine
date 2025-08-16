@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Tasks
+{% endblock %}
+
+{% block body %}
+
+<div class="top">
+    <a href="/">Back</a>
+</div>
+<div class="middle">
+    <table>
+        <thead>
+            <tr>Task</tr>
+            <tr>Work</tr>
+            <tr>Rest</tr>
+            <tr>Rep</tr>
+            <tr>Action</tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.work_time }}</td>
+                    <td>{{ task.rest_time }}</td>
+                    <td>{{ task.repetition }}</td>
+                    <td>
+                        <form action="/edit" method="post">
+                            <input name="name" type="hidden" value="{{ task.name }}">
+                            <input name="work-time" type="hidden" value="{{ task.work_time }}">
+                            <input name="rest-time" type="hidden" value="{{ task.rest_time }}">
+                            <input name="repetition" type="hidden" value="{{ task.repetition }}">
+                            <button>Edit</button>
+                        </form>
+                        <form action="/delete" method="post">
+                            <input name="name" type="hidden" value="{{ task.name }}">
+                            <button>Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</div>
+<div class="bottom">
+    <a href="/add">Add</a>
+</div>
+
+{% endblock %}
