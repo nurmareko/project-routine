@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Delete
+{% endblock %}
+
+{% block body %}
+<div class="middle">
+    <p>Are you sure you want to delete {{ name }}?</p>
+    <form>
+        <button>Yes</button>
+    </form>
+    <form>
+        <button>No</button>
+    </form>
+</div>
+
+{% endblock %}

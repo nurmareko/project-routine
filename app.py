@@ -26,9 +26,10 @@ def index():
         return render_template("index.html", tasks=tasks)
 
 
-@app.route("/edit")
-def edit():
-    return render_template("edit.html")
+@app.route("/tasks")
+def tasks():
+    tasks = db.execute("SELECT * FROM tasks")
+    return render_template("tasks.html", tasks=tasks)
 
 
 @app.route("/study", methods=["POST"])
@@ -40,3 +41,9 @@ def study():
 def statistics():
     studies = db.execute('SELECT * FROM studies')
     return render_template("statistics.html", studies=studies)
+
+
+@app.route("/delete", methods=["POST"])
+def delete():
+    name = request.form.get("name")
+    return render_template("delete.html", name=name)
