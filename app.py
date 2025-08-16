@@ -61,3 +61,26 @@ def delete():
     else:
         name = request.args.get("name")
         return render_template("delete.html", name=name)
+    
+
+@app.route("/edit", methods=["GET", "POST"])
+def edit():
+    if request.method == "POST":
+        id = request.form.get("id")
+        new_name = request.form.get("name")
+        new_work_time = request.form.get("work-time")
+        new_rest_time = request.form.get("rest-time")
+        new_repetition = request.form.get("repetition")
+        db.execute("UPDATE tasks SET name=?, work_time=?, rest_time=?, repetition=? WHERE id=?", new_name, new_work_time, new_rest_time, new_repetition, id)
+
+        flash(new_name + " edited!")
+        return redirect("/tasks")
+    else:
+        task = {
+            "id": request.args.get("id"),
+            "name": request.args.get("name"),
+            "work": request.args.get("work-time"),
+            "rest": request.args.get("rest-time"),
+            "repetition": request.args.get("repetition")
+        }
+        return render_template("edit.html", task=task)

@@ -26,7 +26,8 @@ Tasks
                     <td>{{ task.rest_time }}</td>
                     <td>{{ task.repetition }}</td>
                     <td>
-                        <form action="/edit" method="post">
+                        <form action="/edit" method="get">
+                            <input name="id" type="hidden" value="{{ task.id }}">
                             <input name="name" type="hidden" value="{{ task.name }}">
                             <input name="work-time" type="hidden" value="{{ task.work_time }}">
                             <input name="rest-time" type="hidden" value="{{ task.rest_time }}">

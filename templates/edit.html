@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Edit
+{% endblock %}
+
+{% block body %}
+<div class="top">
+    <a href="/tasks">Back</a>
+</div>
+<div class="middle">
+    <form action="/edit" method="post">
+        <input name="id" type="hidden" value="{{ task.id }}">
+        Name: <input name="name" type="text" value="{{ task.name }}">
+        <br>
+        Work time: <input name="work-time" type="number" value="{{ task.work }}"> minutes
+        <br>
+        Rest time: <input name="rest-time" type="number" value="{{ task.rest }}"> minutes
+        <br>
+        Repetition: <input name="repetition" type="number" value="{{ task.repetition }}">
+        <br>
+        <button type="submit">Edit</button>
+    </form>
+</div>
+
+{% endblock %}
