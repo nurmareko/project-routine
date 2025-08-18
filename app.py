@@ -84,3 +84,17 @@ def edit():
             "repetition": request.args.get("repetition")
         }
         return render_template("edit.html", task=task)
+    
+
+@app.route("/add", methods=["GET", "POST"])
+def add():
+    if request.method == "POST":
+        name = request.form.get("name")
+        work_time = request.form.get("work-time")
+        rest_time = request.form.get("rest-time")
+        repetition = request.form.get("repetition")
+        db.execute("INSERT INTO tasks (name, work_time, rest_time, repetition) values (?, ?, ?, ?)", name, work_time, rest_time, repetition)
+        flash(name + " created!");
+        return redirect("/tasks")
+    else:
+        return render_template("add.html")

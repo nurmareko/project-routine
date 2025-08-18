@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Add
+{% endblock %}
+
+{% block body %}
+
+<div class="top">
+    <a href="/tasks">Back</a>
+</div>
+<div class="middle">
+    <form action="/add" method="post">
+        Name: <input name="name" type="text">
+        <br>
+        Work time: <input name="work-time" type="number" value="50"> minutes
+        <br>
+        Rest time: <input name="rest-time" type="number" value="10"> minutes
+        <br>
+        Repetition: <input name="repetition" type="number" value="1">
+        <br>
+        <button type="submit">Add new task</button>
+    </form>
+</div>
+
+{% endblock %}
