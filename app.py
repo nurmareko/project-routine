@@ -40,9 +40,21 @@ def tasks():
     return render_template("tasks.html", tasks=tasks)
 
 
-@app.route("/study", methods=["POST"])
+@app.route("/study", methods=["GET", "POST"])
 def study():
-    return render_template("study.html")
+    if request.method == "POST":
+        name = request.form.get("name")
+        worked_time = request.form.get("worked-time")
+        flash("done studying " + name + " done!" + "for " + worked_time + " minutes!")
+        redirect("/")
+    else:
+        task = {
+            "name": request.args.get("task"),
+            "work-time": request.args.get("work-time"),
+            "rest-time": request.args.get("rest-time"),
+            "repetition": request.args.get("repetition")
+        }
+        return render_template("study.html", task=task)
 
 
 @app.route("/statistics")
