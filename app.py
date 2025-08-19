@@ -43,10 +43,13 @@ def tasks():
 @app.route("/study", methods=["GET", "POST"])
 def study():
     if request.method == "POST":
-        name = request.form.get("name")
-        worked_time = request.form.get("worked-time")
-        flash("done studying " + name + " done!" + "for " + worked_time + " minutes!")
-        redirect("/")
+        name = request.form.get("name", "Unknown Task")
+        worked_time = request.form.get("total-work-time")
+
+        db.execute("INSERT INTO studies (name, work_time) VALUES (?, ?)", name, worked_time)
+
+        flash("done studying " + name + " for " + worked_time + " minutes!")
+        return redirect("/")
     else:
         task = {
             "name": request.args.get("task"),

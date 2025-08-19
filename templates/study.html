@@ -8,13 +8,67 @@ Study
 
 <div class="middle">
     <h2>{{ task.name }}</h2>
-    <h1>43:23</h1>
-    <h2>1 / {{ task.repetition }}</h2
+    <h1 id="countdown-timer"></h1>
+    <p id="task-repetition"></p>
+    <p id="phase"></p>
 </div>
 <div class="bottom">
-    <form action="/" method="post">
-        <button type="sumbit">End now</button>
+    <form action="/study" id="done-form" method="post">
+        <input name="name" type="hidden" value="{{ task.name }}">
+        <input id="total-work-time" name="total-work-time" type="hidden">
     </form>
+    <a href="/">Cancel</a>
 </div>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const workTime = Number(urlParams.get("work-time"));
+    const repetition = Number(urlParams.get("repetition"));
+    const restTime = Number(urlParams.get("rest-time"));
+    const totalWorkTime = String(workTime * repetition);
+    // console.log(totalWorkTime);
+
+    let currentRep = 1;
+    let phase = "work";
+    let timeLeft = workTime * 60;
+    let timerId;
+
+    function updateDisplay() {
+        const m = Math.floor(timeLeft / 60);
+        const s = String(timeLeft % 60).padStart(2, "0");
+        document.getElementById("countdown-timer").textContent = `${ m }:${ s }`;
+        document.getElementById("task-repetition").textContent = `${ currentRep }/${ repetition }`;
+        document.getElementById("phase").textContent = `${ phase }`;
+    }
+
+    function tick() {
+        if (timeLeft > 0) {
+            timeLeft--;
+            updateDisplay();
+        } else {
+            clearInterval(timerId);
+
+            if (phase === "work") {
+                if (currentRep >= repetition) {
+                    document.getElementById("countdown-timer").textContent = "All done!";
+                    document.getElementById("total-work-time").value = totalWorkTime;
+                    document.getElementById("done-form").submit();
+                    return;
+                }
+                phase = "rest";
+                timeLeft = restTime * 60;
+            } else {
+                currentRep++;
+                phase = "work";
+                timeLeft = workTime * 60;
+            }
+
+            updateDisplay();
+            timerId = setInterval(tick, 1000);
+        }
+    }
+
+    updateDisplay();
+    timerId = setInterval(tick, 1000);
+</script>
 
 {% endblock %}
