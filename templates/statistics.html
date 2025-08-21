@@ -9,6 +9,12 @@ Statistic
     <a href="/">Back</a>
 </div>
 <div class="middle">
+    <form action="/statistics" method="post">
+        From: <input name="from-date" type="date">
+        To: <input name="to-date" type="date">
+        <button type="submit">Filter</button>
+    </form>
+
     <table>
         <thead>
             <tr>Task</tr>
@@ -22,6 +28,21 @@ Statistic
                     <td>{{ study.work_time }}</td>
                     <td>{{ study.date }}</td>
                 </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <table>
+        <thead>
+            <tr>Task</tr>
+            <tr>Total time</tr>
+        </thead>
+        <tbody>
+            {% for summary in summaries %}
+            <tr>
+                <td>{{ summary.name }}</td>
+                <td>{{ summary.total_time | to_hours_minutes }}</td>
+            </tr>
             {% endfor %}
         </tbody>
         <tfoot></tfoot>

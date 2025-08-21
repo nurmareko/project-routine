@@ -1,10 +1,14 @@
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
+from helper import to_hours_minutes
 
 # Configure application
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+
+# Custom filter
+app.jinja_env.filters["to_hours_minutes"] = to_hours_minutes
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
@@ -60,10 +64,25 @@ def study():
         return render_template("study.html", task=task)
 
 
-@app.route("/statistics")
+@app.route("/statistics", methods=["GET", "POST"])
 def statistics():
-    studies = db.execute('SELECT * FROM studies')
-    return render_template("statistics.html", studies=studies)
+    from_date = request.form.get("from-date")
+    to_date = request.form.get("to-date")
+
+    if (not from_date and not to_date):
+        query = "SELECT * FROM studies"
+        studies = db.execute(query)
+        summaries = db.execute("SELECT name, SUM(work_time) as total_time FROM (" + query + ") GROUP BY name")
+    elif (not to_date):
+        query = "SELECT * FROM studies WHERE date >= ?"
+        studies = db.execute(query, from_date)
+        summaries = db.execute("SELECT name, SUM(work_time) as total_time FROM (" + query + ") GROUP BY name", from_date)
+    else:
+        query = "SELECT * FROM studies WHERE date >= ? AND DATE(date) <= ?"
+        studies = db.execute(query, from_date, to_date)
+        summaries = db.execute("SELECT name, SUM(work_time) as total_time FROM (" + query + ") GROUP BY name", from_date, to_date)
+    
+    return render_template("statistics.html", studies=studies, summaries=summaries)
 
 
 @app.route("/delete", methods=["GET", "POST"])
