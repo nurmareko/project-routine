@@ -6,7 +6,7 @@ let flaskProcess;
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 800,
+        width: 745,
         height: 600,
         autoHideMenuBar: true,
         webPreferences: {

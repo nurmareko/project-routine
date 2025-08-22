@@ -1,5 +1,5 @@
 div {
-    /* outline: 2px solid red; */
+    outline: 2px solid red;
 }
 
 body {
@@ -9,7 +9,6 @@ body {
     font-weight: bold;
     font-family: 'Share Tech Mono', monospace;
     margin: 0;
-    /* padding: 0; */
     min-height: 100vh;
 
     /* Grid background */
@@ -47,18 +46,18 @@ body {
 }
 
 #clock {
-    color: #48b7cc;
-    text-shadow: none;
     padding: 20px;
     text-align: center;
 }
 
-#clock h2 {
+h2 {
     font-size: 35px;
 }
 
-#clock h2,
-#clock h3 {
+h2,
+h3 {
+    color: #48b7cc;
+    text-shadow: none;
     position: relative;
     z-index: 1;
     margin: 5px 0;
@@ -68,6 +67,7 @@ form {
     background: #afb6c5;
     padding: 20px;
     width: 300px;
+    border-radius: 7px;
 }
 
 form input,
@@ -97,4 +97,91 @@ form button {
 form button:hover {
     background: #31131e;
     color: #f7e79c;
+}
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+    max-width: 800px;
+    background: #231d28;
+}
+
+thead th {
+    padding: 8px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    background: #afb6c5;
+}
+
+tbody td {
+    text-shadow: none;
+    padding: 5px;
+    text-align: center;
+    color: #efb466;
+    font-weight: bold;
+    border-bottom: 1px solid #6d7ead55;
+}
+
+tbody tr {
+    background: #231d28;
+}
+
+table form {
+    display: inline-block;
+    margin: 0 2px;
+}
+
+td form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+td form button {
+    display: inline-block;
+    padding: 3px;
+    border: 1px solid #6d7ead;
+    background: #231d28;
+    color: #efb466;
+    cursor: pointer;
+}
+
+table button:hover {
+    background: #31131e;
+    color: #fff;
+}
+
+.table-container {
+    max-height: 440px;
+    overflow-x: hidden;
+    width: 90%;
+    max-width: 800px;
+}
+
+.table-container table {
+    width: 100%;
+    margin: 0;
+}
+
+.bottom {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.bottom a {
+    display: inline-block;
+    background: #afb6c5;
+    padding: 12px 24px;
+    border-radius: 7px;
+    font-weight: bold;
+    color: #0a0f0f;
+    text-decoration: none;
+}
+
+.bottom a:hover {
+    background: #2c5c54;
+    color: #f7e79c;
+    text-shadow: none;
 }

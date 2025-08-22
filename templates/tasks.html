@@ -8,45 +8,49 @@ Tasks
 
 <div class="top">
     <a href="/">Back</a>
+    <a href="/add">Add</a>
 </div>
 <div class="middle">
-    <table>
-        <thead>
-            <tr>Task</tr>
-            <tr>Work</tr>
-            <tr>Rest</tr>
-            <tr>Rep</tr>
-            <tr>Action</tr>
-        </thead>
-        <tbody>
-            {% for task in tasks %}
+    <h2>Task List</h2>
+    <div class="table-container">
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ task.name }}</td>
-                    <td>{{ task.work_time }}</td>
-                    <td>{{ task.rest_time }}</td>
-                    <td>{{ task.repetition }}</td>
-                    <td>
-                        <form action="/edit" method="get">
-                            <input name="id" type="hidden" value="{{ task.id }}">
-                            <input name="name" type="hidden" value="{{ task.name }}">
-                            <input name="work-time" type="hidden" value="{{ task.work_time }}">
-                            <input name="rest-time" type="hidden" value="{{ task.rest_time }}">
-                            <input name="repetition" type="hidden" value="{{ task.repetition }}">
-                            <button>Edit</button>
-                        </form>
-                        <form action="/delete" method="get">
-                            <input name="name" type="hidden" value="{{ task.name }}">
-                            <button>Delete</button>
-                        </form>
-                    </td>
+                    <th>Task</th>
+                    <th>Work</th>
+                    <th>Rest</th>
+                    <th>Rep</th>
+                    <th>Action</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-        <tfoot></tfoot>
-    </table>
-</div>
-<div class="bottom">
-    <a href="/add">Add</a>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.name }}</td>
+                        <td>{{ task.work_time }}</td>
+                        <td>{{ task.rest_time }}</td>
+                        <td>{{ task.repetition }}</td>
+                        <td>
+                            <form action="/edit" method="get">
+                                <input name="id" type="hidden" value="{{ task.id }}">
+                                <input name="name" type="hidden" value="{{ task.name }}">
+                                <input name="work-time" type="hidden" value="{{ task.work_time }}">
+                                <input name="rest-time" type="hidden" value="{{ task.rest_time }}">
+                                <input name="repetition" type="hidden" value="{{ task.repetition }}">
+                                <button>Edit</button>
+                            </form>
+                            <form action="/delete" method="get">
+                                <input name="name" type="hidden" value="{{ task.name }}">
+                                <button>Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+
 </div>
 
 {% endblock %}
