@@ -1,3 +1,100 @@
 div {
-    outline: 2px solid red;
+    /* outline: 2px solid red; */
+}
+
+body {
+    background: #313c60;
+    color: #2c5c54;
+    text-shadow: 0 0 10px #cdd4e3;
+    font-weight: bold;
+    font-family: 'Share Tech Mono', monospace;
+    margin: 0;
+    /* padding: 0; */
+    min-height: 100vh;
+
+    /* Grid background */
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 28px,
+            #6d7ead 30px),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 28px,
+            #6d7ead 30px);
+}
+
+.top {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background: #afb6c5;}
+
+.top a {
+    color: #2c5c54;
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: 0 0 10px #cdd4e3;
+}
+
+.middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#clock {
+    color: #48b7cc;
+    text-shadow: none;
+    padding: 20px;
+    text-align: center;
+}
+
+#clock h2 {
+    font-size: 35px;
+}
+
+#clock h2,
+#clock h3 {
+    position: relative;
+    z-index: 1;
+    margin: 5px 0;
+}
+
+form {
+    background: #afb6c5;
+    padding: 20px;
+    width: 300px;
+}
+
+form input,
+form select {
+    background: #231d28;
+    color: #efb466;
+    font-family: inherit;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+form button {
+    background: #562134;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+    color: #f7e79c;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 4px;
+    text-shadow: 0 0 4px #313c60
+}
+
+form button:hover {
+    background: #31131e;
+    color: #f7e79c;
 }
