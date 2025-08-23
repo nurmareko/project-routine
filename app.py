@@ -70,17 +70,17 @@ def statistics():
     to_date = request.form.get("to-date")
 
     if (not from_date and not to_date):
-        query = "SELECT * FROM studies"
+        query = "SELECT * FROM studies ORDER BY date DESC"
         studies = db.execute(query)
-        summaries = db.execute("SELECT name, SUM(work_time) as total_time FROM (" + query + ") GROUP BY name")
+        summaries = db.execute("SELECT name, SUM(work_time) as total_time FROM (" + query + ") GROUP BY name ORDER BY total_time DESC")
     elif (not to_date):
-        query = "SELECT * FROM studies WHERE date >= ?"
+        query = "SELECT * FROM studies WHERE date >= ? ORDER BY date DESC"
         studies = db.execute(query, from_date)
-        summaries = db.execute("SELECT name, SUM(work_time) as total_time FROM (" + query + ") GROUP BY name", from_date)
+        summaries = db.execute("SELECT name, SUM(work_time) as total_time FROM (" + query + ") GROUP BY name ORDER BY total_time DESC", from_date)
     else:
-        query = "SELECT * FROM studies WHERE date >= ? AND DATE(date) <= ?"
+        query = "SELECT * FROM studies WHERE date >= ? AND DATE(date) <= ? ORDER BY date DESC"
         studies = db.execute(query, from_date, to_date)
-        summaries = db.execute("SELECT name, SUM(work_time) as total_time FROM (" + query + ") GROUP BY name", from_date, to_date)
+        summaries = db.execute("SELECT name, SUM(work_time) as total_time FROM (" + query + ") GROUP BY name ORDER BY total_time DESC", from_date, to_date)
     
     return render_template("statistics.html", studies=studies, summaries=summaries)
 

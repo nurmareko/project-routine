@@ -6,4 +6,7 @@ def to_hours_minutes(minutes):
         hours += 1
         minutes -= 60
 
-    return f"{hours}h {minutes}m"
+    if hours == 0:
+        return f"{minutes}m"
+    else:
+        return f"{hours}h {minutes}m"

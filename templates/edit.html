@@ -9,15 +9,16 @@ Edit
     <a href="/tasks">Back</a>
 </div>
 <div class="middle">
+    <h2>Task</h2>
     <form action="/edit" method="post">
         <input name="id" type="hidden" value="{{ task.id }}">
         Name: <input name="name" type="text" value="{{ task.name }}">
         <br>
-        Work time: <input name="work-time" type="number" value="{{ task.work }}"> minutes
+        Work time: <input name="work-time" type="number" value="{{ task.work }}" style="width: 205px;"> minutes
         <br>
-        Rest time: <input name="rest-time" type="number" value="{{ task.rest }}"> minutes
+        Rest time: <input name="rest-time" type="number" value="{{ task.rest }}" style="width: 205px;"> minutes
         <br>
-        Repetition: <input name="repetition" type="number" value="{{ task.repetition }}">
+        Repetition: <input name="repetition" type="number" value="{{ task.repetition }}" style="width: 205px;">
         <br>
         <button type="submit">Edit</button>
     </form>

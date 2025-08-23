@@ -9,8 +9,9 @@ Delete
     <a href="/tasks">Back</a>
 </div>
 <div class="middle">
-    <p>Are you sure you want to delete <strong>{{ name }}</strong>?</p>
+    <h2>Delete</h2>
     <form action="/delete" method="post">
+        <p>Are you sure you want to delete <strong>{{ name }}</strong>?</p>
         <input name="name" type="hidden" value="{{ name }}">
         <button type="submit">Yes</button>
     </form>

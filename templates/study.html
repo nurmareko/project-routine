@@ -5,20 +5,23 @@ Study
 {% endblock %}
 
 {% block body %}
+<div class="top">
+    <a href="/">Cancel</a>
+</div>
 
 <div class="middle">
-    <h2>{{ task.name }}</h2>
-    <h1 id="countdown-timer"></h1>
-    <p id="task-repetition"></p>
-    <p id="phase"></p>
+    <h3 class="study-h3" style="margin-top: 110px">{{ task.name }}</h3>
+    <h2 class="study-h2" id="countdown-timer"></h2>
+    <h3 class="study-h3" id="task-repetition"></h3>
+    <h3 class="study-h3" id="phase"></h3>
 </div>
 <div class="bottom">
-    <form action="/study" id="done-form" method="post">
+    <form action="/study" id="done-form" method="post" style="padding: 0;">
         <input name="name" type="hidden" value="{{ task.name }}">
         <input id="total-work-time" name="total-work-time" type="hidden">
     </form>
-    <a href="/">Cancel</a>
 </div>
+<audio id="sound" src="/static/beep.mp3"></audio>
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     const workTime = Number(urlParams.get("work-time"));
@@ -31,6 +34,7 @@ Study
     let phase = "work";
     let timeLeft = workTime * 60;
     let timerId;
+    const sound = document.getElementById("sound");
 
     function updateDisplay() {
         const m = Math.floor(timeLeft / 60);
@@ -51,7 +55,10 @@ Study
                 if (currentRep >= repetition) {
                     document.getElementById("countdown-timer").textContent = "All done!";
                     document.getElementById("total-work-time").value = totalWorkTime;
-                    document.getElementById("done-form").submit();
+                    sound.play();
+                    setTimeout(() => {
+                        document.getElementById("done-form").submit();
+                    }, 2500);
                     return;
                 }
                 phase = "rest";
@@ -62,6 +69,7 @@ Study
                 timeLeft = workTime * 60;
             }
 
+            sound.play();
             updateDisplay();
             timerId = setInterval(tick, 1000);
         }

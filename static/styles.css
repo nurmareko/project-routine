@@ -1,13 +1,14 @@
-div {
+/* div {
     outline: 2px solid red;
-}
+} */
 
 body {
     background: #313c60;
     color: #2c5c54;
     text-shadow: 0 0 10px #cdd4e3;
     font-weight: bold;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'Michroma', sans-serif;
+    font-size: 15px;
     margin: 0;
     min-height: 100vh;
 
@@ -47,6 +48,7 @@ body {
 
 #clock {
     padding: 20px;
+    margin-top: -30px;
     text-align: center;
 }
 
@@ -104,6 +106,7 @@ table {
     width: 90%;
     max-width: 800px;
     background: #231d28;
+    border-radius: 7px;
 }
 
 thead th {
@@ -127,14 +130,8 @@ tbody tr {
     background: #231d28;
 }
 
-table form {
-    display: inline-block;
-    margin: 0 2px;
-}
-
 td form {
     display: inline;
-    margin: 0;
     padding: 0;
 }
 
@@ -184,4 +181,59 @@ table button:hover {
     background: #2c5c54;
     color: #f7e79c;
     text-shadow: none;
+}
+
+.alert {
+    text-align: center;
+}
+
+.filter-form {
+    margin: 15px;
+    background: #afb6c5;
+    padding: 10px 15px;
+    width: auto;
+}
+
+.filter-form input {
+    color: #48b7cc;
+    font-weight: bold;
+    background: #313c60;
+}
+
+.filter-form input,
+.filter-form button {
+    width: auto;
+    margin: 0;
+}
+
+.record-container {
+    max-height: 170px;
+    overflow-x: hidden;
+    width: 90%;
+    max-width: 800px;
+}
+
+.record-container table {
+    width: 100%;
+    margin: 0;
+}
+
+.summary-container {
+    max-height: 200px;
+    overflow-x: hidden;
+    width: 90%;
+    max-width: 800px;
+}
+
+.summary-container table {
+    width: 100%;
+    margin: 0;
+}
+
+.study-h2 {
+    font-size: 60px;
+}
+
+.study-h3 {
+    font-size: 30px;
 }

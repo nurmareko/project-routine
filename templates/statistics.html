@@ -9,44 +9,53 @@ Statistic
     <a href="/">Back</a>
 </div>
 <div class="middle">
-    <form action="/statistics" method="post">
+    <h2 style="margin: 0;">Report</h2>
+    <form action="/statistics" method="post" class="filter-form">
         From: <input name="from-date" type="date">
         To: <input name="to-date" type="date">
         <button type="submit">Filter</button>
     </form>
-
-    <table>
-        <thead>
-            <tr>Task</tr>
-            <tr>Work</tr>
-            <tr>Date</tr>
-        </thead>
-        <tbody>
-            {% for study in studies %}
+    <div class="summary-container">
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ study.name }}</td>
-                    <td>{{ study.work_time }}</td>
-                    <td>{{ study.date }}</td>
+                    <th>Task</th>
+                    <th>Total time</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-        <tfoot></tfoot>
-    </table>
-    <table>
-        <thead>
-            <tr>Task</tr>
-            <tr>Total time</tr>
-        </thead>
-        <tbody>
-            {% for summary in summaries %}
-            <tr>
-                <td>{{ summary.name }}</td>
-                <td>{{ summary.total_time | to_hours_minutes }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-        <tfoot></tfoot>
-    </table>
+            </thead>
+            <tbody>
+                {% for summary in summaries %}
+                <tr>
+                    <td>{{ summary.name }}</td>
+                    <td>{{ summary.total_time | to_hours_minutes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+    <div class="record-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Work</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for study in studies %}
+                    <tr>
+                        <td>{{ study.name }}</td>
+                        <td>{{ study.work_time | to_hours_minutes }}</td>
+                        <td>{{ study.date }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+    
 </div>
 
 {% endblock %}
