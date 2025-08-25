@@ -11,12 +11,12 @@ Tasks
     <a href="/add">Add</a>
 </div>
 <div class="middle">
-    <h2>Task List</h2>
+    <h2>Subject List</h2>
     <div class="table-container">
         <table>
             <thead>
                 <tr>
-                    <th>Task</th>
+                    <th>name</th>
                     <th>Work</th>
                     <th>Rest</th>
                     <th>Rep</th>
@@ -27,8 +27,8 @@ Tasks
                 {% for task in tasks %}
                     <tr>
                         <td>{{ task.name }}</td>
-                        <td>{{ task.work_time }}</td>
-                        <td>{{ task.rest_time }}</td>
+                        <td>{{ task.work_time | to_hours_minutes }}</td>
+                        <td>{{ task.rest_time | to_hours_minutes }}</td>
                         <td>{{ task.repetition }}</td>
                         <td>
                             <form action="/edit" method="get">

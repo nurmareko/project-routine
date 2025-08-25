@@ -7,9 +7,9 @@ Routine
 {% block body %}
 
 <div class="top">
-    <a href="/tasks">Tasks</a>
+    <a href="/tasks">Subjects</a>
     <a href="">Project: Routine</a>
-    <a href="/statistics">Statistics</a>
+    <a href="/statistics">Report</a>
 </div>
 <div class="middle">
 
@@ -19,7 +19,7 @@ Routine
     </div>
     <form action="/study" method="get">
         <select name="task" id="task-select">
-            <option disabled selected value="">Task</option>
+            <option disabled selected value="">Subject</option>
             {% for task in tasks %}
               <option
                 data-rest-time="{{ task.rest_time }}"
